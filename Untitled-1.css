@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Glow Skincare - Pancarkan Kecantikan Alami Kulit Anda</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cream: '#FAF5EF',     /* Warna background utama hangat */
+                            creamlight: '#FDFBF9',/* Krem super terang untuk kontras */
+                            pinksoft: '#F9D5D3',  /* Pink pastel lembut */
+                            pinkmedium: '#F3BDBA',/* Pink medium hangat */
+                            rose: '#D28B87',      /* Aksen mawar gelap */
+                            charcoal: '#3A2E2B',  /* Teks gelap elegan */
+                            gold: '#C5A880'       /* Sentuhan emas mewah */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF5EF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F3BDBA;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D28B87;
+        }
+        
+        /* Floating animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-brand-cream text-brand-charcoal font-sans overflow-x-hidden">
+
+    <!-- Header / Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md bg-brand-cream/90 border-b border-brand-pinksoft/30" id="main-header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <span class="font-serif text-2xl font-bold tracking-wide text-brand-charcoal">
+                        Glow <span class="text-brand-rose">&</span> Glow
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#beranda" class="text-brand-charcoal hover:text-brand-rose transition-colors duration-200">Beranda</a>
+                    <a href="#tentang" class="text-brand-charcoal hover:text-brand-rose transition-colors duration-200">Tentang Kami</a>
+                    <a href="#layanan" class="text-brand-charcoal hover:text-brand-rose transition-colors duration-200">Layanan</a>
+                    <a href="#portofolio" class="text-brand-charcoal hover:text-brand-rose transition-colors duration-200">Portofolio</a>
+                    <a href="#kontak" class="text-brand-charcoal hover:text-brand-rose transition-colors duration-200">Kontak</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <button onclick="openBookingModal()" class="bg-brand-rose hover:bg-brand-charcoal text-white hover:text-brand-cream px-6 py-2.5 rounded-full text-sm font-medium tracking-wide shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                        Konsultasi Gratis
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-brand-charcoal hover:text-brand-rose focus:outline-none" aria-expanded="false">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="hidden md:hidden bg-brand-creamlight border-b border-brand-pinksoft/40 transition-all duration-300" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-3 sm:px-3 text-center">
+                <a href="#beranda" class="block px-3 py-2.5 rounded-md text-base font-medium hover:bg-brand-pinksoft/20 text-brand-charcoal hover:text-brand-rose transition-all">Beranda</a>
+                <a href="#tentang" class="block px-3 py-2.5 rounded-md text-base font-medium hover:bg-brand-pinksoft/20 text-brand-charcoal hover:text-brand-rose transition-all">Tentang Kami</a>
+                <a href="#layanan" class="block px-3 py-2.5 rounded-md text-base font-medium hover:bg-brand-pinksoft/20 text-brand-charcoal hover:text-brand-rose transition-all">Layanan</a>
+                <a href="#portofolio" class="block px-3 py-2.5 rounded-md text-base font-medium hover:bg-brand-pinksoft/20 text-brand-charcoal hover:text-brand-rose transition-all">Portofolio</a>
+                <a href="#kontak" class="block px-3 py-2.5 rounded-md text-base font-medium hover:bg-brand-pinksoft/20 text-brand-charcoal hover:text-brand-rose transition-all">Kontak</a>
+                <div class="pt-4">
+                    <button onclick="openBookingModal()" class="w-full bg-brand-rose text-white py-3 rounded-full text-md font-medium shadow-md">
+                        Konsultasi Gratis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero / Banner Section -->
+    <section id="beranda" class="relative pt-24 pb-16 md:py-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Background Ornaments -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-pinksoft rounded-full filter blur-3xl opacity-40"></div>
+        <div class="absolute bottom-10 right-0 w-80 h-80 bg-brand-rose rounded-full filter blur-3xl opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text Info -->
+                <div class="md:col-span-7 space-y-6 md:pr-8 text-center md:text-left">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-pinksoft/55 text-brand-rose text-xs font-semibold tracking-wider uppercase mb-2">
+                        <i class="fa-solid fa-sparkles"></i> Glow Your Way Every Day
+                    </span>
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl text-brand-charcoal font-semibold leading-tight">
+                        Wujudkan Kulit Sehat, <br class="hidden sm:inline">
+                        <span class="text-brand-rose italic font-normal">Cerah alami</span> & Bersinar
+                    </h1>
+                    <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto md:mx-0 leading-relaxed font-light">
+                        Rawat kecantikan alami kulit Anda dengan produk skincare organik premium & treatment klinis modern yang dipersonalisasi khusus untuk kesehatan kulit tropis Anda.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                        <a href="#layanan" class="bg-brand-rose hover:bg-brand-charcoal text-white hover:text-brand-cream px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 shadow-md hover:shadow-xl text-center">
+                            Lihat Treatment
+                        </a>
+                        <a href="#tentang" class="bg-transparent hover:bg-brand-pinksoft/20 border-2 border-brand-rose text-brand-rose px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 text-center">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-brand-pinksoft/40 max-w-md mx-auto md:mx-0">
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-rose">15k+</p>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Klien Puas</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-rose">99%</p>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Bahan Alami</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl sm:text-3xl font-bold text-brand-rose">12+</p>
+                            <p class="text-xs text-slate-500 uppercase tracking-wider">Ahli Dermatologi</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="md:col-span-5 relative">
+                    <div class="relative mx-auto max-w-[340px] sm:max-w-[400px]">
+                        <!-- Elegant Frame Background -->
+                        <div class="absolute inset-0 bg-brand-pinksoft rounded-3xl transform rotate-3 scale-105 z-0"></div>
+                        
+                        <!-- Main Image -->
+                        <div class="relative overflow-hidden rounded-3xl border-4 border-brand-creamlight shadow-2xl z-10 transition-transform duration-500 hover:scale-[1.02]">
+                            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Glow and Glow Skincare Model" 
+                                 class="w-full h-[450px] object-cover"
+                                 onerror="this.src='https://placehold.co/800x1000/F9D5D3/3A2E2B?text=Glow+%26+Glow';">
+                        </div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute -bottom-6 -left-6 bg-brand-creamlight p-4 rounded-2xl shadow-xl border border-brand-pinksoft/40 z-20 animate-float flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinksoft flex items-center justify-center text-brand-rose">
+                                <i class="fa-solid fa-medal text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-brand-charcoal">Best Skin Clinic</p>
+                                <p class="text-[10px] text-slate-500">Awarded 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Tentang Kami (About Us) Section -->
+    <section id="tentang" class="py-20 bg-brand-creamlight relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Interactive Video/Image Mockup -->
+                <div class="lg:col-span-6 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <img src="https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=400&q=80" 
+                                 alt="Skincare Routine Product" 
+                                 class="rounded-2xl shadow-md w-full h-64 object-cover transform hover:scale-105 transition-all duration-350"
+                                 onerror="this.src='https://placehold.co/400x500/F9D5D3/3A2E2B?text=Produk';">
+                            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=400&q=80" 
+                                 alt="Beauty Treatment Clinic" 
+                                 class="rounded-2xl shadow-md w-full h-44 object-cover transform hover:scale-105 transition-all duration-350"
+                                 onerror="this.src='https://placehold.co/400x300/F3BDBA/3A2E2B?text=Klinik';">
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" 
+                                 alt="Organic Skincare Ingredients" 
+                                 class="rounded-2xl shadow-md w-full h-44 object-cover transform hover:scale-105 transition-all duration-350"
+                                 onerror="this.src='https://placehold.co/400x300/FAF5EF/3A2E2B?text=Alami';">
+                            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&q=80" 
+                                 alt="Facial Skincare Massage" 
+                                 class="rounded-2xl shadow-md w-full h-64 object-cover transform hover:scale-105 transition-all duration-350"
+                                 onerror="this.src='https://placehold.co/400x500/D28B87/ffffff?text=Treatment';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Copywriting / About Details -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Sejarah & Visi Kami</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-snug">
+                        Kecantikan Berkelanjutan yang Lahir dari <span class="text-brand-rose italic font-normal">Sains & Keaslian Alam</span>
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed font-light">
+                        Didirikan sejak tahun 2021, <strong>Glow & Glow Skincare</strong> mendedikasikan diri untuk memberikan solusi perawatan kulit yang personal, aman, dan berstandar dermatologist internasional. Kami percaya bahwa kulit yang sehat adalah cerminan dari keseimbangan hidup yang baik.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed font-light">
+                        Dengan memadukan teknologi klinis termutakhir serta bahan alami nabati (botanical extracts) kualitas terbaik, kami memastikan kulit Anda mendapatkan nutrisi murni tanpa efek samping berbahaya.
+                    </p>
+                    
+                    <!-- Core Values Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-start gap-3 p-4 bg-brand-cream rounded-xl border border-brand-pinksoft/30">
+                            <span class="p-2 bg-brand-pinksoft rounded-lg text-brand-rose">
+                                <i class="fa-solid fa-user-doctor"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-semibold text-sm">Dokter Spesialis</h4>
+                                <p class="text-xs text-slate-500 mt-1">Konsultasi langsung dengan dermatolog profesional bersertifikasi.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3 p-4 bg-brand-cream rounded-xl border border-brand-pinksoft/30">
+                            <span class="p-2 bg-brand-pinksoft rounded-lg text-brand-rose">
+                                <i class="fa-solid fa-leaf"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-semibold text-sm">Bahan 100% Organik</h4>
+                                <p class="text-xs text-slate-500 mt-1">Bebas paraben, cruelty-free, ramah lingkungan & vegan-friendly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Layanan (Services) Section -->
+    <section id="layanan" class="py-20 bg-brand-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Menu Treatment Klinis & Skincare</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold">
+                    Layanan Perawatan Premium Kami
+                </h2>
+                <div class="h-1 w-20 bg-brand-rose mx-auto rounded-full"></div>
+                <p class="text-slate-600 font-light text-sm sm:text-base">
+                    Kami menyediakan serangkaian perawatan intensif yang disesuaikan secara khusus sesuai dengan tipe kulit unik Anda oleh tim dokter berpengalaman.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Ultimate Glow Facial</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Treatment facial premium mengkombinasikan hidrasi oksigen, eksfoliasi mikro, serta serum kolagen murni untuk memulihkan elastisitas kulit kusam seketika.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 350.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Acne & Pore Therapy</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Terapi tuntas atasi jerawat aktif, komedo membandel, dan menyamarkan pori-pori besar menggunakan sinar Blue-Light LED serta masker tea-tree alami.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 299.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Anti-Aging Lift Laser</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Teknologi laser non-invasif modern yang efektif mengencangkan kulit wajah, menyamarkan garis kerut halus, dan merangsang pembentukan elastin alami.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 550.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Hyaluronic Hydration</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Solusi terbaik untuk kulit sensitif dan kering dehidrasi. Memberikan suntikan kelembapan intensif agar kulit tampak super dewy, kenyal dan halus.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 250.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Brightening Peel Infusion</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Mengurangi flek hitam, hiperpigmentasi, dan melasma dengan infus zat pencerah botanical alami serta pengelupasan kimiawi ringan yang sangat aman.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 400.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-brand-creamlight rounded-2xl p-6 border border-brand-pinksoft/30 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 bg-brand-pinksoft rounded-2xl flex items-center justify-center text-brand-rose text-2xl group-hover:bg-brand-rose group-hover:text-white transition-all duration-300 shadow-sm">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-brand-charcoal">Digital Skin Analysis</h3>
+                        <p class="text-sm text-slate-600 font-light leading-relaxed">
+                            Analisis struktur kulit digital terlengkap untuk mengetahui kelembapan, kadar minyak, umur sel kulit wajah, serta kebutuhan nutrisi khusus secara akurat.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-brand-pinksoft/30 mt-6 flex justify-between items-center">
+                        <span class="text-brand-rose font-bold text-sm">Mulai Rp 150.000</span>
+                        <a href="#kontak" class="text-xs font-semibold text-brand-charcoal hover:text-brand-rose flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                            Info Lebih Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portofolio / Katalog Produk Section -->
+    <section id="portofolio" class="py-20 bg-brand-creamlight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header & Filter Controls -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div class="space-y-4 max-w-xl">
+                    <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Galeri & Portofolio Produk</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-charcoal">
+                        Koleksi & Hasil Perawatan Kami
+                    </h2>
+                    <p class="text-slate-600 text-sm font-light">
+                        Lihat produk skincare organik terbaik kami serta hasil nyata transformasi kulit wajah sehat para pelanggan Glow & Glow.
+                    </p>
+                </div>
+                
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 text-sm">
+                    <button onclick="filterPortfolio('semua')" class="portfolio-tab px-5 py-2 rounded-full border border-brand-pinksoft bg-brand-rose text-white transition-all duration-300" id="btn-semua">
+                        Semua
+                    </button>
+                    <button onclick="filterPortfolio('produk')" class="portfolio-tab px-5 py-2 rounded-full border border-brand-pinksoft bg-brand-cream text-brand-charcoal hover:bg-brand-pinksoft/30 transition-all duration-300" id="btn-produk">
+                        Skincare Premium
+                    </button>
+                    <button onclick="filterPortfolio('treatment')" class="portfolio-tab px-5 py-2 rounded-full border border-brand-pinksoft bg-brand-cream text-brand-charcoal hover:bg-brand-pinksoft/30 transition-all duration-300" id="btn-treatment">
+                        Prosedur Klinis
+                    </button>
+                    <button onclick="filterPortfolio('transformasi')" class="portfolio-tab px-5 py-2 rounded-full border border-brand-pinksoft bg-brand-cream text-brand-charcoal hover:bg-brand-pinksoft/30 transition-all duration-300" id="btn-transformasi">
+                        Transformasi (Before/After)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Portfolio Grid Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                
+                <!-- Item 1: Produk -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="produk">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Glow Serum Premium" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/F9D5D3/3A2E2B?text=Glow+Serum';">
+                            <div class="absolute inset-0 bg-brand-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-brand-creamlight text-brand-rose px-4 py-2 rounded-full font-semibold text-xs shadow">Detail Produk</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">SKINCARE PREMIUM</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">C-Glow Daily Nourish Serum</h4>
+                            <p class="text-xs text-slate-500 mt-2">Serum kaya vitamin C alami untuk mencerahkan wajah & menghapus flek hitam dalam 14 hari.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Treatment -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="treatment">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Facial Laser Therapy" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/F3BDBA/3A2E2B?text=Laser+Therapy';">
+                            <div class="absolute inset-0 bg-brand-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-brand-creamlight text-brand-rose px-4 py-2 rounded-full font-semibold text-xs shadow">Klinik</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">PROSEDUR KLINIS</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">Sinar Laser IPL Brightening</h4>
+                            <p class="text-xs text-slate-500 mt-2">Terapi peremajaan kulit terfokus mengoreksi pigmentasi secara efisien dan aman.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Transformasi -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="transformasi">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Before After Client" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/FAF5EF/3A2E2B?text=Transformasi';">
+                            <div class="absolute top-3 left-3 bg-brand-rose text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Sukses Story</div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">TRANSFORMASI (BEFORE/AFTER)</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">Kulit Mulus Bebas Acne Scar</h4>
+                            <p class="text-xs text-slate-500 mt-2">Perubahan kulit wajah Ibu Amanda setelah 3 bulan treatment laser CO2 Fractional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Produk -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="produk">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Cream Pelembab Organik" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/D28B87/ffffff?text=Pelembab';">
+                            <div class="absolute inset-0 bg-brand-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-brand-creamlight text-brand-rose px-4 py-2 rounded-full font-semibold text-xs shadow">Detail Produk</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">SKINCARE PREMIUM</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">Centella Soothing Moisturizer</h4>
+                            <p class="text-xs text-slate-500 mt-2">Krim pelembap ringan yang cepat menyerap untuk memperkuat skin barrier rusak.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Treatment -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="treatment">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Botox Treatment Clinic" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/F9D5D3/3A2E2B?text=Botox';">
+                            <div class="absolute inset-0 bg-brand-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-brand-creamlight text-brand-rose px-4 py-2 rounded-full font-semibold text-xs shadow">Klinik</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">PROSEDUR KLINIS</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">Premium Collagen Boosting</h4>
+                            <p class="text-xs text-slate-500 mt-2">Layanan anti kerutan dengan teknik infus kolagen di bawah supervisi ketat dokter.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6: Transformasi -->
+                <div class="portfolio-item transform transition-all duration-500 hover:scale-[1.03]" data-category="transformasi">
+                    <div class="bg-brand-cream rounded-2xl overflow-hidden border border-brand-pinksoft/30 shadow-sm hover:shadow-md">
+                        <div class="relative overflow-hidden group h-72">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" 
+                                 alt="Before After Hydrated Skin" 
+                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                 onerror="this.src='https://placehold.co/600x600/F3BDBA/3A2E2B?text=Dewy+Skin';">
+                            <div class="absolute top-3 left-3 bg-brand-rose text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Sukses Story</div>
+                        </div>
+                        <div class="p-5">
+                            <span class="text-[11px] text-brand-rose font-bold uppercase tracking-wider">TRANSFORMASI (BEFORE/AFTER)</span>
+                            <h4 class="font-serif text-lg font-bold text-brand-charcoal mt-1">Solusi Kulit Kering Dehidrasi</h4>
+                            <p class="text-xs text-slate-500 mt-2">Testimoni kulit super dewy & glowing alami setelah treatment Hydrafacial berkala.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial & FAQ Section -->
+    <section class="py-20 bg-brand-cream relative overflow-hidden">
+        <!-- Floating Circles background -->
+        <div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-brand-pinksoft rounded-full filter blur-3xl opacity-30"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left: Testimonials (Carousel Mockup) -->
+                <div class="lg:col-span-6 space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Ulasan Pelanggan</span>
+                        <h2 class="font-serif text-3xl font-bold">Apa Kata Mereka?</h2>
+                        <div class="h-1 w-16 bg-brand-rose rounded-full"></div>
+                    </div>
+
+                    <!-- Testimonial Slider / Box -->
+                    <div class="bg-brand-creamlight p-8 rounded-2xl border border-brand-pinksoft/40 shadow-sm relative">
+                        <span class="absolute top-4 right-6 text-brand-pinksoft text-6xl font-serif">“</span>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        
+                        <!-- Slider Content -->
+                        <div id="testimonial-container">
+                            <p class="text-slate-600 leading-relaxed font-light italic text-sm sm:text-base" id="testimonial-text">
+                                "Sangat merekomendasikan Glow & Glow! Setelah 3 kali Ultimate Glow Facial, bekas jerawat kehitaman saya memudar dan wajah jadi jauh lebih kenyal. Dokter dan terapisnya ramah, tempatnya bersih serta estetik sekali."
+                            </p>
+                            
+                            <div class="flex items-center gap-4 mt-6">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                                     alt="Client Profile" 
+                                     class="w-12 h-12 rounded-full object-cover border-2 border-brand-rose"
+                                     id="testimonial-avatar"
+                                     onerror="this.src='https://placehold.co/100x100/F3BDBA/3A2E2B?text=Ava';">
+                                <div>
+                                    <h5 class="font-bold text-sm text-brand-charcoal" id="testimonial-name">Rania Salsabila</h5>
+                                    <p class="text-xs text-slate-400" id="testimonial-job">Beauty Influencer, Jakarta</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slider Navigation dots -->
+                        <div class="flex gap-2 mt-6 justify-end">
+                            <button onclick="changeTestimonial(0)" class="w-3 h-3 rounded-full bg-brand-rose" id="testi-dot-0"></button>
+                            <button onclick="changeTestimonial(1)" class="w-3 h-3 rounded-full bg-brand-pinksoft hover:bg-brand-rose" id="testi-dot-1"></button>
+                            <button onclick="changeTestimonial(2)" class="w-3 h-3 rounded-full bg-brand-pinksoft hover:bg-brand-rose" id="testi-dot-2"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: FAQ Accordions -->
+                <div class="lg:col-span-6 space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Pertanyaan Populer</span>
+                        <h2 class="font-serif text-3xl font-bold">Frequently Asked Questions</h2>
+                        <div class="h-1 w-16 bg-brand-rose rounded-full"></div>
+                    </div>
+
+                    <div class="space-y-4">
+                        
+                        <!-- FAQ 1 -->
+                        <div class="bg-brand-creamlight border border-brand-pinksoft/30 rounded-xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left px-5 py-4 flex items-center justify-between font-semibold text-brand-charcoal text-sm sm:text-base focus:outline-none" onclick="toggleFaq(1)">
+                                <span>Apakah produk skincare Glow & Glow aman untuk bumil & busui?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-rose transition-transform duration-300" id="faq-icon-1"></i>
+                            </button>
+                            <div class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-500 leading-relaxed font-light" id="faq-content-1">
+                                Ya, 100% aman. Produk skincare rumahan kami diformulasikan bebas paraben, bebas merkuri, bebas hidrokuinon, serta bebas paraben yang aman digunakan untuk wanita hamil maupun menyusui.
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="bg-brand-creamlight border border-brand-pinksoft/30 rounded-xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left px-5 py-4 flex items-center justify-between font-semibold text-brand-charcoal text-sm sm:text-base focus:outline-none" onclick="toggleFaq(2)">
+                                <span>Bagaimana cara melakukan booking treatment?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-rose transition-transform duration-300" id="faq-icon-2"></i>
+                            </button>
+                            <div class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-500 leading-relaxed font-light" id="faq-content-2">
+                                Anda dapat melakukan booking via formulir kontak di bawah ini, atau menekan tombol "Konsultasi Gratis" di navigasi atas untuk langsung terhubung dengan admin kustom via chat.
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="bg-brand-creamlight border border-brand-pinksoft/30 rounded-xl overflow-hidden transition-all duration-300">
+                            <button class="w-full text-left px-5 py-4 flex items-center justify-between font-semibold text-brand-charcoal text-sm sm:text-base focus:outline-none" onclick="toggleFaq(3)">
+                                <span>Apakah ada konsultasi dokter sebelum treatment?</span>
+                                <i class="fa-solid fa-chevron-down text-brand-rose transition-transform duration-300" id="faq-icon-3"></i>
+                            </button>
+                            <div class="hidden px-5 pb-4 text-xs sm:text-sm text-slate-500 leading-relaxed font-light" id="faq-content-3">
+                                Wajib dan Gratis! Setiap pelanggan baru kami harus melalui tahap Digital Skin Analysis terlebih dahulu, dilanjutkan dengan sesi konsultasi mendalam gratis bersama tim dokter estetika kami.
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak Kami (Contact) Section -->
+    <section id="kontak" class="py-20 bg-brand-creamlight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Left Column: Contact Info & Map Mockup -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div class="space-y-4">
+                        <span class="text-brand-rose font-semibold tracking-wider uppercase text-xs">Hubungi Klinik</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-charcoal">Datang & Manjakan Kulit Cantikmu</h2>
+                        <p class="text-slate-600 text-sm font-light leading-relaxed">
+                            Kami selalu senang menyambut Anda di klinik kami yang hangat dan nyaman. Silakan mampir atau hubungi kontak kami di bawah ini.
+                        </p>
+                    </div>
+
+                    <!-- Contact Details list -->
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 bg-brand-pinksoft rounded-full flex items-center justify-center text-brand-rose">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-sm">Alamat Klinik Utama</h5>
+                                <p class="text-xs text-slate-500 mt-0.5">Jl. Kemang Raya No. 45B, Mampang Prapatan, Jakarta Selatan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 bg-brand-pinksoft rounded-full flex items-center justify-center text-brand-rose">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-sm">Nomor Telepon / WhatsApp</h5>
+                                <p class="text-xs text-slate-500 mt-0.5">+62 812-3456-7890 (Klinik Kemang)</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 bg-brand-pinksoft rounded-full flex items-center justify-center text-brand-rose">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-sm">Surel / Email Resmi</h5>
+                                <p class="text-xs text-slate-500 mt-0.5">hello@glowandglowskincare.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Map Mockup -->
+                    <div class="rounded-2xl overflow-hidden border border-brand-pinksoft/40 shadow-sm relative h-48 bg-slate-200 group">
+                        <!-- Simulated Map Aesthetic -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://placehold.co/600x400/F9D5D3/3A2E2B?text=Map+Location+Mockup');"></div>
+                        <div class="absolute inset-0 bg-brand-charcoal/10 group-hover:bg-brand-charcoal/5 transition-all"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                            <div class="w-10 h-10 bg-brand-rose text-white rounded-full flex items-center justify-center shadow-md animate-bounce mb-2">
+                                <i class="fa-solid fa-location-pin text-lg"></i>
+                            </div>
+                            <span class="bg-brand-creamlight text-brand-charcoal px-3 py-1 rounded-full text-xs font-semibold shadow border border-brand-pinksoft/30">Glow & Glow Kemang</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Form -->
+                <div class="lg:col-span-7 bg-brand-cream p-6 sm:p-10 rounded-2xl border border-brand-pinksoft/40 shadow-md">
+                    <h3 class="font-serif text-2xl font-bold text-brand-charcoal mb-2">Kirim Pesan / Konsultasi Online</h3>
+                    <p class="text-xs text-slate-500 mb-6 font-light">Butuh saran produk atau ingin menanyakan harga promo? Isi form di bawah, kami akan segera merespons dalam 1x24 jam.</p>
+
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-charcoal uppercase tracking-wider mb-1" for="name">Nama Lengkap</label>
+                                <input type="text" id="name" required class="w-full bg-brand-creamlight border border-brand-pinksoft rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-all" placeholder="Rania Salsabila">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-brand-charcoal uppercase tracking-wider mb-1" for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" required class="w-full bg-brand-creamlight border border-brand-pinksoft rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-all" placeholder="0812XXXXXXXX">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-charcoal uppercase tracking-wider mb-1" for="email">Alamat Email</label>
+                            <input type="email" id="email" required class="w-full bg-brand-creamlight border border-brand-pinksoft rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-all" placeholder="rania@example.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-charcoal uppercase tracking-wider mb-1" for="service">Minat Layanan</label>
+                            <select id="service" class="w-full bg-brand-creamlight border border-brand-pinksoft rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-all">
+                                <option value="Beli Skincare Rumahan">Membeli Produk Skincare Rumahan</option>
+                                <option value="Treatment Glow Facial">Booking Ultimate Glow Facial</option>
+                                <option value="Laser Anti-Aging">Booking Anti-Aging Lift Laser</option>
+                                <option value="Acne Therapy">Booking Acne & Pore Therapy</option>
+                                <option value="Konsultasi Kulit Gratis">Ingin Konsultasi Online Gratis</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-charcoal uppercase tracking-wider mb-1" for="message">Pesan Anda</label>
+                            <textarea id="message" rows="4" required class="w-full bg-brand-creamlight border border-brand-pinksoft rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose focus:border-transparent transition-all" placeholder="Ceritakan permasalahan kulit Anda saat ini..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-brand-rose hover:bg-brand-charcoal text-white hover:text-brand-cream py-4 rounded-xl text-sm font-semibold tracking-wide shadow-md transition-all duration-300">
+                            Kirim Pesan Sekarang <i class="fa-solid fa-paper-plane ml-1"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-charcoal text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 border-b border-brand-pinksoft/10 pb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="lg:col-span-5 space-y-5">
+                    <span class="font-serif text-3xl font-bold tracking-wide">
+                        Glow <span class="text-brand-pinksoft">&</span> Glow
+                    </span>
+                    <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-sm">
+                        Kami menghadirkan rahasia kulit mulus berkilau dengan memadukan keajaiban alam botanical premium dan kearifan sains kedokteran kulit modern terkini.
+                    </p>
+                    <!-- Social Icons -->
+                    <div class="flex gap-4 pt-2">
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-brand-rose text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 text-sm">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-brand-rose text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 text-sm">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-brand-rose text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 text-sm">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 bg-white/5 hover:bg-brand-rose text-slate-300 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 text-sm">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h5 class="text-sm font-bold tracking-wider uppercase text-brand-pinksoft">Tautan Cepat</h5>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 font-light">
+                        <li><a href="#beranda" class="hover:text-brand-pinksoft transition-colors">Halaman Utama</a></li>
+                        <li><a href="#tentang" class="hover:text-brand-pinksoft transition-colors">Tentang Kami</a></li>
+                        <li><a href="#layanan" class="hover:text-brand-pinksoft transition-colors">Layanan Treatment</a></li>
+                        <li><a href="#portofolio" class="hover:text-brand-pinksoft transition-colors">Portofolio</a></li>
+                        <li><a href="#kontak" class="hover:text-brand-pinksoft transition-colors font-medium">Hubungi Kami</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Newsletter Sign-up -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h5 class="text-sm font-bold tracking-wider uppercase text-brand-pinksoft">Dapatkan Promo Eksklusif</h5>
+                    <p class="text-xs text-slate-300 leading-relaxed font-light">
+                        Masukkan email Anda untuk menerima voucher diskon 20% khusus member baru dan promo skincare bulanan kami.
+                    </p>
+                    <form onsubmit="handleNewsletterSubmit(event)" class="flex gap-2">
+                        <input type="email" id="newsletter-email" required class="bg-white/5 border border-white/15 rounded-lg px-4 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-brand-pinksoft w-full" placeholder="emailanda@gmail.com">
+                        <button type="submit" class="bg-brand-rose hover:bg-brand-pinkmedium text-white px-4 rounded-lg text-xs font-semibold transition-all">Daftar</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Credits -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+                <p>&copy; 2026 Glow & Glow Skincare. Seluruh Hak Cipta Dilindungi.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition-colors">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-white transition-colors">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Consultation / Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Modal Overlay background -->
+            <div class="fixed inset-0 bg-brand-charcoal/60 backdrop-blur-sm transition-opacity" onclick="closeBookingModal()"></div>
+
+            <!-- Trick element to center modal -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Content Box -->
+            <div class="inline-block align-bottom bg-brand-cream rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-brand-pinksoft/40">
+                <div class="bg-brand-creamlight px-6 py-6 border-b border-brand-pinksoft/20 flex justify-between items-center">
+                    <h3 class="font-serif text-lg font-bold text-brand-charcoal flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-brand-rose"></i> Booking Jadwal Konsultasi Gratis
+                    </h3>
+                    <button onclick="closeBookingModal()" class="text-slate-400 hover:text-brand-charcoal focus:outline-none">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <form onsubmit="handleBookingSubmit(event)">
+                    <div class="p-6 space-y-4">
+                        <p class="text-xs text-slate-500 font-light">Lengkapi detail pemesanan jadwal konsultasi langsung dengan asisten atau dokter di klinik Glow & Glow.</p>
+                        
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider mb-1" for="book-name">Nama Lengkap</label>
+                            <input type="text" id="book-name" required class="w-full bg-brand-cream border border-brand-pinksoft rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose" placeholder="Rania Salsabila">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider mb-1" for="book-phone">WhatsApp Terhubung</label>
+                            <input type="tel" id="book-phone" required class="w-full bg-brand-cream border border-brand-pinksoft rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose" placeholder="0812XXXXXXXX">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider mb-1" for="book-date">Tanggal Pilihan</label>
+                                <input type="date" id="book-date" required class="w-full bg-brand-cream border border-brand-pinksoft rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider mb-1" for="book-time">Jam Pilihan</label>
+                                <select id="book-time" class="w-full bg-brand-cream border border-brand-pinksoft rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose">
+                                    <option value="10:00 - 12:00">10:00 - 12:00 WIB</option>
+                                    <option value="13:00 - 15:00">13:00 - 15:00 WIB</option>
+                                    <option value="16:00 - 18:00">16:00 - 18:00 WIB</option>
+                                    <option value="19:00 - 21:00">19:00 - 21:00 WIB</option>
+                                </select>
+                            </div>
+                 
